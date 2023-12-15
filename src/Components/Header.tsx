@@ -9,7 +9,7 @@ const Header = () => {
             </div>
             <div className='flex flex-col items-start justify-between pt-5 justify-around w-[25rem]'>
                 <button className='flex bg-white/[0.4] py-3 px-5 rounded mb-3'>Projects</button>
-                <button className='flex justify-between items-center bg-slate-800 py-3 px-5 rounded'><FaGithub className='mr-4' />Github</button>
+                <a href="https://www.github.com/sameony" target='_blank'><button className='flex justify-between items-center bg-slate-800 py-3 px-5 rounded'><FaGithub className='mr-4' />Github</button></a>
             </div>
             {/* <FaChevronDown className='absolute bottom-1 right-[49%] rounded-full bg-slate-800 text-white text-xl h-12 w-12 p-2' /> */}
         </div>
