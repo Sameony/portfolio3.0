@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import useWindowDimensions from "../Utils/useWindowDimensions";
 import {FaUser} from "react-icons/fa"
 import {MdOutlineDeveloperMode} from "react-icons/md"
 import {BsSend} from "react-icons/bs"

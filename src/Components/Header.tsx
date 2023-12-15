@@ -1,5 +1,3 @@
-import React from 'react'
-import Navbar from './Navbar'
 import { FaGithub, FaChevronDown } from "react-icons/fa";
 
 const Header = () => {
