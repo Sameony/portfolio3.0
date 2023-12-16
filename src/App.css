@@ -1,13 +1,36 @@
 .anim_gradient {
-  background-image: linear-gradient(rgba(87, 84, 84, 0.2),rgba(54, 54, 54, 0.2)),url("/public/home-bg.jpeg");
-	/* background: url("/public/home-bg.jpeg"); */
+  background-image: linear-gradient(
+      rgba(87, 84, 84, 0.2),
+      rgba(54, 54, 54, 0.2)
+    ),
+    url("/public/home-bg.jpeg");
+  /* background: url("/public/home-bg.jpeg"); */
   /* background-position: 15rem; */
-	background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
-	/* animation: gradient 15s ease-in-out infinite; */
-	/* height: 100vh; */
+  /* animation: gradient 15s ease-in-out infinite; */
+  /* height: 100vh; */
 }
-
+@media (max-width: 768px) {
+  .anim_gradient {
+    background-image: linear-gradient(
+        rgba(87, 84, 84, 0.2),
+        rgba(54, 54, 54, 0.2)
+      ),
+      url("/public/home-bg.jpeg");
+    background-position: -15rem;
+    background-size: 200%;
+    background-repeat: no-repeat;
+  }
+}
+@media (max-width: 500px) {
+  .anim_gradient {
+    background: url("/public/home-bg.jpeg");
+    background-position: -23rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
 /* .anim_gradient {
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
@@ -27,4 +50,3 @@
 	}
 }
  */
-

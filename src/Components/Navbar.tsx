@@ -14,19 +14,19 @@ function Navbar() {
             <span className=" border-t-2 border-[#536378] pb-4 pt-2">Software Developer <br /> Freelancer</span>
         </div>
         <div className="py-8 cursor-pointer hover:text-[#e73c7e] transition mt-8 px-8  flex flex-col items-center justify-center">
-            <FaUser className="text-4xl" />
+            <FaUser className="text-3xl" />
             About
         </div>
         <div className="py-8 cursor-pointer hover:text-[#e73c7e] transition px-8 border-[#293341] border-t flex flex-col items-center justify-center">
-            <span className="text-4xl">2+</span>
+            <span className="text-3xl font-bold">2+</span>
             Experience
         </div>
         <div className="py-8 cursor-pointer hover:text-[#e73c7e] transition px-8 border-[#293341] border-t flex flex-col items-center justify-center">
-            <MdOutlineDeveloperMode className="text-4xl" />
+            <MdOutlineDeveloperMode className="text-3xl" />
             Projects
         </div>
         <div className="py-8 cursor-pointer hover:text-[#e73c7e] transition px-8 border-[#293341] border-y flex flex-col items-center justify-center">
-            <BsSend className="text-4xl" />
+            <BsSend className="text-3xl" />
             Contact
         </div>
         
