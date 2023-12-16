@@ -10,7 +10,7 @@ export default function Navbar({onHeadClick,
     onExperienceClick,
     onProjectsClick,
     onContactClick}:any) {
-    const { height, width } = useWindowDimensions();
+    const { width } = useWindowDimensions();
     const[toggle, setToggle] = useState(false)
   return (
       width>1023?<nav className={` fixed left-0 top-0 bottom-0 text-[#536378] flex flex-col py-5 bg-slate-900 z-10 overflow-y-auto`}>

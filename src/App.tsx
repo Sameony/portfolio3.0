@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useRef } from 'react';
+import {  useRef } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import About from './Components/About';
