@@ -1,7 +1,7 @@
 
 const About = () => {
   return (
-    <div className='bg-slate-100 flex justify-center py-24 px-5 h-[30rem]'>
+    <div className='bg-slate-100 flex justify-center py-24 px-5 '>
         <div className='w-1/2 pl-12'>
             <p className='text-6xl mb-12 font-semibold  text-[#13294b]'>About</p>
             <div className='border-l-2 ml-12 p-5 pt-8 border-[#293341]'>

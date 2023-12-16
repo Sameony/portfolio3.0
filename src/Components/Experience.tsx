@@ -13,7 +13,7 @@ import {FaArrowRight} from 'react-icons/fa'
 
 const Experience = () => {
   return (
-    <div className='bg-white flex justify-center my-24 p-5 h-[25rem]'>
+    <div className='bg-white flex justify-center my-24 p-5'>
         <div className='w-1/2 pl-12'>
             <p className='text-6xl mb-12 font-semibold  text-[#13294b]'>Experience</p>
             <div className='border-l-2 ml-12 p-5 pt-8 border-[#293341]'>

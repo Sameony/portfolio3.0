@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     <Navbar />
-      <div className="ml-56">
+      <div className="lg:ml-56">
         <Header />
         <About />
         <Experience />
