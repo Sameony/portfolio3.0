@@ -1,4 +1,4 @@
-import React from 'react'
+import {forwardRef } from 'react'
 import reacxlogo from '../images/react.svg';
 import mongo from '../images/mongo.png';
 import tailwind from "../images/tailwind.svg"
@@ -11,9 +11,9 @@ import node from "../images/node-js.png"
 import js from "../images/js.png"
 import {FaArrowRight} from 'react-icons/fa'
 
-const Experience = () => {
+const Experience = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className='bg-white flex flex-col lg:flex-row justify-center my-24 p-5'>
+    <div ref={ref} className='bg-white flex flex-col lg:flex-row justify-center my-24 p-5'>
         <div className='w-full lg:w-1/2 mb-5 sm:pl-12 pl-4'>
             <p className='sm:text-6xl text-5xl mb-12 font-semibold text-[#13294b]'>Experience</p>
             <div className='sm:border-l-2 xl:ml-12  p-2 pl-0 sm:p-5 pt-8 border-[#293341]'>
@@ -42,6 +42,6 @@ const Experience = () => {
         </div>
     </div>
   )
-}
+})
 
 export default Experience

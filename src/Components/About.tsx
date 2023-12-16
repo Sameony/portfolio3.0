@@ -1,8 +1,9 @@
+import { forwardRef } from "react"
 import { FaUser } from "react-icons/fa"
 
-const About = () => {
+const About = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className='bg-slate-100 flex  justify-center py-24 px-5 '>
+    <div ref={ref} className='bg-slate-100 flex  justify-center py-24 px-5 '>
         <div className='lg:w-1/2 pl-4 sm:pl-12'>
             <div className="flex justify-between items-center w-full">
               <p className='text-5xl sm:text-6xl mb-12 font-semibold  text-[#13294b]'>About</p>
@@ -25,6 +26,6 @@ const About = () => {
         </div>
     </div>
   )
-}
+})
 
 export default About

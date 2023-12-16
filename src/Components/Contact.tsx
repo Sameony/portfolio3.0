@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 
-const Contact = () => {
+const Contact = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className='bg-white  py-24 px-5 '>
+    <div ref={ref} className='bg-white  py-24 px-5 '>
         <div className='xl:w-[11/12] sm:pl-12 pl-4'>
             <p className='text-5xl sm:text-6xl mb-12 font-semibold  text-[#13294b]'>Contact</p>
             <div className='sm:border-l-2 xl:ml-12 sm:p-5 pr-2 pt-8 border-[#293341]'>
@@ -31,6 +31,6 @@ const Contact = () => {
     </div>
     
   )
-}
+})
 
 export default Contact

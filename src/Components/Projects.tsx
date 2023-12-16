@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
-const Projects = () => {
+const Projects = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className='bg-slate-100 flex flex-col lg:flex-row justify-center py-24 px-5 '>
+    <div className='bg-slate-100 flex flex-col lg:flex-row justify-center py-24 px-5 ' ref={ref}>
     <div className='lg:w-1/2 pl-4 sm:pl-12'>
         <p className='text-5xl sm:text-6xl mb-12 font-semibold  text-[#13294b]'>Projects</p>
         <div className='sm:border-l-2 xl:ml-12 p-2 pl-0 sm:p-5 pt-8 border-[#293341]'>
@@ -24,6 +24,6 @@ const Projects = () => {
     </div>
 </div>
   )
-}
+})
 
 export default Projects

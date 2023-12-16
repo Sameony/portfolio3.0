@@ -1,8 +1,9 @@
+import { forwardRef } from "react";
 import { FaGithub, FaChevronDown } from "react-icons/fa";
 
-const Header = () => {
+const Header = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className='anim_gradient lg:h-screen h-[calc(100vh-5rem)]'>
+    <div ref={ref} className='anim_gradient lg:h-screen h-[calc(100vh-5rem)]'>
         <div className='flex relative flex-col ml-12 md:text-3xl text-xl pb-5 justify-end h-full font-semibold text-white flex-1'>
             <div className='max-w-[15rem] md:max-w-[30rem] flex items-end pb-5'>
             Versatile web developer creating seamless digital experiences through innovative coding and design.
@@ -15,6 +16,6 @@ const Header = () => {
         </div>
     </div>
   )
-}
+})
 
 export default Header
