@@ -26,7 +26,7 @@
 @media (max-width: 500px) {
   .anim_gradient {
     background: url("/public/home-bg.jpeg");
-    background-position: -23rem;
+    background-position: -20rem;
     background-size: cover;
     background-repeat: no-repeat;
   }

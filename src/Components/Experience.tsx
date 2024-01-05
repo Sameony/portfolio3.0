@@ -4,11 +4,12 @@ import mongo from '../images/mongo.png';
 import tailwind from "../images/tailwind.svg"
 import aws from "../images/aws.svg"
 import azure from "../images/azure.svg"
-import next from "../images/nextjs.svg"
+// import next from "../images/nextjs.svg"
 import css from "../images/css-3.png"
 import html from "../images/html-5.png"
 import node from "../images/node-js.png"
 import js from "../images/js.png"
+import ts from "../images/icons8-typescript-96.png"
 import {FaArrowRight} from 'react-icons/fa'
 
 const Experience = forwardRef<HTMLDivElement, {}>((props, ref) => {
@@ -22,9 +23,9 @@ const Experience = forwardRef<HTMLDivElement, {}>((props, ref) => {
                     Through these diverse experiences, I have developed valuable expertise in a variety of
                     frameworks and libraries.
                 </p>
-                <button className='bg-[#23a6d5] py-4 px-7 mt-12 sm:ml-4 sm:text-2xl text-white flex items-center '>
+                <a download href='Sameer_CV.pdf' className='bg-[#23a6d5] w-64 py-4 px-7 mt-12 sm:ml-4 sm:text-2xl text-white flex items-center '>
                     View Resume <FaArrowRight className='ml-8' />
-                </button>
+                </a>
             </div>
         </div>
         <div className='w-full lg:w-1/2 grid sm:grid-cols-5 grid-cols-4 auto-rows-auto place-items-center gap-5'>
@@ -34,7 +35,7 @@ const Experience = forwardRef<HTMLDivElement, {}>((props, ref) => {
             <img className='h-12 sm:h-24 w-12 sm:w-24' src={html} alt="react" />
             <img className='h-12 sm:h-24 w-12 sm:w-24' src={css} alt="react" />
             <img className='h-12 sm:h-24 w-12 sm:w-24' src={mongo} alt="react" />
-            <img className='h-12 sm:h-24 w-12 sm:w-24' src={next} alt="react" />
+            <img className='h-12 sm:h-24 w-12 sm:w-24' src={ts} alt="react" />
             <img className='h-12 sm:h-24 w-12 sm:w-24' src={node} alt="react" />
             <img className='h-12 sm:h-24 w-12 sm:w-24' src={aws} alt="react" />
             <img className='h-12 sm:h-24 w-12 sm:w-24' src={azure} alt="react" />
