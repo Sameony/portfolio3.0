@@ -1,4 +1,3 @@
-import ReactSimplyCarousel from "react-simply-carousel"
 import {useState,  forwardRef, useEffect } from 'react'
 import mewi from '../images/mewi.png';
 import purrito from "../images/buymeow.png"
