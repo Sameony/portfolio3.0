@@ -2,7 +2,7 @@ import {useState,  forwardRef, useEffect } from 'react'
 import mewi from '../images/mewi.png';
 import purrito from "../images/buymeow.png"
 import portfolio from "../images/this.png"
-
+import payout from "../images/payouts.png"
 
 const Projects = forwardRef<HTMLDivElement, {}>((props, ref) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -31,9 +31,10 @@ const Projects = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
     <div className='lg:w-1/2 mt-10 lg:mt-0 overflow-y-auto'>
     
-        <a href="https://mirinda-mewi.netlify.app/" target="__blank" referrerPolicy="no-referrer"><img src={mewi} alt="website banner" className={`${activeSlideIndex%3!==0&&"hidden"} object-contain w-full`} /></a>
-        <a href="https://e-comm-purritos.vercel.app/" target="__blank" referrerPolicy="no-referrer"><img src={purrito} alt="website banner" className={`${activeSlideIndex%3!==1&&"hidden"} object-contain w-full`} /></a>
-        <a href="https://portfolio3-0-brown.vercel.app/" target="__blank" referrerPolicy="no-referrer"><img src={portfolio} alt="website banner" className={`${activeSlideIndex%3!==2&&"hidden"} object-contain w-full`} /></a>
+        <a href="https://mirinda-mewi.netlify.app/" target="__blank" referrerPolicy="no-referrer"><img src={mewi} alt="website banner" className={`${activeSlideIndex%4!==0&&"hidden"} object-contain w-full`} /></a>
+        <a href="https://e-comm-purritos.vercel.app/" target="__blank" referrerPolicy="no-referrer"><img src={purrito} alt="website banner" className={`${activeSlideIndex%4!==1&&"hidden"} object-contain w-full`} /></a>
+        <a href="https://portfolio3-0-brown.vercel.app/" target="__blank" referrerPolicy="no-referrer"><img src={portfolio} alt="website banner" className={`${activeSlideIndex%4!==2&&"hidden"} object-contain w-full`} /></a>
+        <a href="https://dukaanpay-challenge.netlify.app/" target="__blank" referrerPolicy="no-referrer"><img src={payout} alt="website banner" className={`${activeSlideIndex%4!==3&&"hidden"} object-contain w-full`} /></a>
 
     </div>
     
