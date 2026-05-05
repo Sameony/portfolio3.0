@@ -29,7 +29,7 @@ function App() {
         onContactClick={() => handleScrollTo(contactRef)}
       />
       <div className="lg:ml-56">
-        <Header ref={headRef} />
+        <Header ref={headRef} onProjectsClick={() => handleScrollTo(projectsRef)} />
         <About ref={aboutRef} />
         <Experience ref={experienceRef} />
         <Projects ref={projectsRef} />
