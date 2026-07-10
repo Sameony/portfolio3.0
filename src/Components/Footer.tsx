@@ -1,16 +1,31 @@
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
-
-const Footer = () => {
+export function Footer() {
   return (
-    <div className='bg-slate-900 w-full text-white pl-4 sm:pl-12 py-3 text-xs sm:text-lg flex justify-between items-center'>
-      © {new Date().getFullYear()} Mohammed Sameer
-      <div className='flex'>
-        <a href='https://www.twitter.com/sameony1' target='_blank' rel='noreferrer'><FaTwitter className='h-6 w-6 sm:h-10 sm:w-10 mx-5' /></a>
-        <a href='https://www.github.com/sameony' target='_blank' rel='noreferrer'><FaGithub className='h-6 w-6 sm:h-10 sm:w-10 mx-5' /></a>
-        <a href='https://www.linkedin.com/in/sameony' target='_blank' rel='noreferrer'><FaLinkedin className='h-6 w-6 sm:h-10 sm:w-10 mx-5' /></a>
+    <footer style={{ borderTop: '1px solid var(--hairline)' }}>
+      <div
+        className="section-inner"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '24px var(--gutter)',
+          fontSize: '12.5px',
+          color: 'var(--faint)',
+        }}
+      >
+        <span>© {new Date().getFullYear()} Mohammed Sameer</span>
+        <a
+          href="#top"
+          style={{
+            color: 'var(--faint)',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--faint)')}
+        >
+          Back to top ↑
+        </a>
       </div>
-    </div>
+    </footer>
   )
 }
-
-export default Footer

@@ -2,37 +2,176 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design Tokens ─────────────────────────────────────── */
+:root {
+  --paper: #e9e4d9;
+  --ink: #2b2823;
+  --clay: #a45c3a;
+  --body: #5c574e;
+  --muted: #7a746a;
+  --faint: #a49e93;
+  --ink-soft: #443f38;
+  --hairline: rgba(43, 40, 35, 0.14);
+  --hairline-strong: rgba(43, 40, 35, 0.16);
+  --preview-bg: #ded8ca;
+  --preview-hover: #d3cbb9;
+  --gutter: clamp(20px, 5vw, 72px);
+  --section-pad: clamp(60px, 9vh, 120px);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+  color: var(--ink);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--paper);
+  color: var(--ink);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+::selection {
+  background: var(--clay);
+  color: #f4f1ea;
 }
 
-/* width */
+/* ── Scrollbar ─────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--paper);
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #536378;
+  background: rgba(43, 40, 35, 0.22);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(43, 40, 35, 0.38);
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-  transition: ease all;
+/* ── Keyframe Animations ───────────────────────────────── */
+@keyframes drift {
+  0%   { transform: translate(-6%, -4%) scale(1); }
+  50%  { transform: translate(8%, 6%) scale(1.12); }
+  100% { transform: translate(-6%, -4%) scale(1); }
+}
+
+@keyframes drift2 {
+  0%   { transform: translate(5%, 4%) scale(1.08); }
+  50%  { transform: translate(-8%, -6%) scale(0.94); }
+  100% { transform: translate(5%, 4%) scale(1.08); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(164, 92, 58, 0.55); }
+  70%       { box-shadow: 0 0 0 9px rgba(164, 92, 58, 0); }
+}
+
+@keyframes drawLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Hero At-Load Reveals ──────────────────────────────── */
+.at-load {
+  animation: fadeUp 0.85s var(--ease-out) both;
+}
+.at-load-1 { animation-delay: 0.10s; }
+.at-load-2 { animation-delay: 0.22s; }
+.at-load-3 { animation-delay: 0.32s; }
+.at-load-4 { animation-delay: 0.44s; }
+
+/* ── Scroll Reveal ─────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.85s var(--ease-out),
+    transform 0.85s var(--ease-out);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Accent (Newsreader italic with drawLine underline) ── */
+.accent {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  color: var(--clay);
+  position: relative;
+  display: inline-block;
+}
+.accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clay);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: drawLine 0.9s var(--ease-out) 0.55s forwards;
+}
+
+/* ── Eyebrow pulse dot ─────────────────────────────────── */
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clay);
+  animation: pulse 2.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* ── Section Wrapper ───────────────────────────────────── */
+.section-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section-pad {
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+}
+
+.hairline {
+  border-top: 1px solid var(--hairline);
+}
+
+/* ── Reduced Motion Override ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .accent::after {
+    transform: scaleX(1);
+  }
 }

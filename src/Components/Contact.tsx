@@ -1,95 +1,105 @@
-import React, { forwardRef, useState } from 'react'
-import { FaArrowRight } from 'react-icons/fa'
-import emailjs from '@emailjs/browser'
+import { useInView } from '../hooks/useInView'
 
-type Status = 'idle' | 'sending' | 'sent' | 'error'
-
-const Contact = forwardRef<HTMLDivElement, {}>((props, ref) => {
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [status, setStatus] = useState<Status>('idle')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('sending')
-    try {
-      console.log(process.env.REACT_APP_EMAILJS_PUBLIC_KEY!)
-      await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID!,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!,
-        { from_email: email, subject, message },
-        { publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY! },
-      )
-      setStatus('sent')
-      setEmail('')
-      setSubject('')
-      setMessage('')
-    } catch (error){
-      console.log(error)
-      setStatus('error')
-    }
-  }
+export function Contact() {
+  const sectionRef = useInView() as React.RefObject<HTMLElement>
 
   return (
-    <div ref={ref} className='bg-white py-24 px-5'>
-      <div className='xl:w-[11/12] sm:pl-12 pl-4'>
-        <p className='text-5xl sm:text-6xl mb-12 font-semibold text-[#13294b]'>Contact</p>
-        <div className='sm:border-l-2 xl:ml-12 sm:p-5 pr-2 pt-8 border-[#293341]'>
-          {status === 'sent' ? (
-            <div className='sm:ml-4 py-12 text-xl text-[#13294b] font-medium'>
-              Message received — I'll be in touch shortly.
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className='space-y-8 sm:ml-4'>
-              <div>
-                <label className='block mb-2 sm:text-lg font-medium text-gray-900'>Your email</label>
-                <input
-                  type='email'
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5'
-                  placeholder='you@example.com'
-                  required
-                />
-              </div>
-              <div>
-                <label className='block mb-2 sm:text-lg font-medium text-gray-900'>Subject</label>
-                <input
-                  type='text'
-                  value={subject}
-                  onChange={e => setSubject(e.target.value)}
-                  className='block p-3 w-full sm:text-lg text-gray-900 bg-gray-50 border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500'
-                  placeholder='Project enquiry'
-                  required
-                />
-              </div>
-              <div className='sm:col-span-2'>
-                <label className='block mb-2 sm:text-lg font-medium text-gray-900'>Your message</label>
-                <textarea
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-                  rows={6}
-                  className='block p-2.5 w-full sm:text-lg text-gray-900 bg-gray-50 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500'
-                  placeholder='Tell me about your project...'
-                />
-              </div>
-              {status === 'error' && (
-                <p className='text-red-500 text-sm'>Something went wrong. Please try again or email me directly.</p>
-              )}
-              <button
-                className='bg-[#23a6d5] py-4 px-7 mt-12 text-2xl text-white flex items-center disabled:opacity-60'
-                type='submit'
-                disabled={status === 'sending'}
-              >
-                {status === 'sending' ? 'Sending…' : 'Submit'} <FaArrowRight className='ml-8' />
-              </button>
-            </form>
-          )}
+    <section
+      id="contact"
+      ref={sectionRef}
+      style={{
+        borderTop: '1px solid var(--hairline)',
+        paddingTop: 'clamp(80px,13vh,170px)',
+        paddingBottom: 'clamp(50px,7vh,90px)',
+        textAlign: 'center',
+      }}
+    >
+      <div className="section-inner">
+        {/* Eyebrow */}
+        <p
+          data-reveal
+          style={{
+            fontSize: '13.5px',
+            color: 'var(--muted)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            margin: '0 0 28px',
+            fontWeight: 400,
+          }}
+        >
+          Available for select projects
+        </p>
+
+        {/* Heading */}
+        <h2
+          data-reveal
+          style={{
+            fontWeight: 300,
+            fontSize: 'clamp(40px,8.5vw,122px)',
+            lineHeight: 1,
+            letterSpacing: '-0.025em',
+            color: 'var(--ink)',
+            margin: '0 0 48px',
+            transitionDelay: '80ms',
+          }}
+        >
+          Let&apos;s build{' '}
+          <em className="accent" style={{ fontSize: 'inherit' }}>something</em>.
+        </h2>
+
+        {/* Email link */}
+        <div data-reveal style={{ transitionDelay: '160ms', marginBottom: '40px' }}>
+          <a
+            href="mailto:samsaysag@gmail.com"
+            style={{
+              fontSize: 'clamp(20px,3vw,34px)',
+              color: 'var(--ink)',
+              textDecoration: 'none',
+              borderBottom: '1.5px solid var(--clay)',
+              paddingBottom: '2px',
+              transition: 'color 0.2s ease, border-color 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--clay)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--ink)'
+            }}
+          >
+            samsaysag@gmail.com ↗
+          </a>
+        </div>
+
+        {/* Footer info */}
+        <div
+          data-reveal
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '20px',
+            flexWrap: 'wrap',
+            fontSize: '14px',
+            color: 'var(--muted)',
+            transitionDelay: '240ms',
+          }}
+        >
+          <a
+            href="https://www.linkedin.com/in/sameony"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--muted)')}
+          >
+            LinkedIn ↗
+          </a>
+          <span style={{ color: 'var(--hairline)', userSelect: 'none' }}>·</span>
+          <span>+91 97170 07881</span>
+          <span style={{ color: 'var(--hairline)', userSelect: 'none' }}>·</span>
+          <span>Noida, India</span>
         </div>
       </div>
-    </div>
+    </section>
   )
-})
-
-export default Contact
+}
