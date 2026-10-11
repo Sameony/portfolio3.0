@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { projects } from '../data/projects'
 import { useInView } from '../hooks/useInView'
+import { Gallery } from './Gallery'
 
 function useWindowWidth() {
   const [width, setWidth] = useState(window.innerWidth)
@@ -46,7 +47,8 @@ function Preview({ hoveredIndex }: PreviewProps) {
       style={{
         position: 'sticky',
         top: '110px',
-        aspectRatio: '4/3',
+        // A cover image sets its own height, so the panel only keeps its fixed shape without one.
+        aspectRatio: project?.cover ? 'auto' : '4/3',
         borderRadius: '8px',
         background: hoveredIndex !== null ? 'var(--preview-hover)' : 'var(--preview-bg)',
         transition: 'background 0.3s ease, transform 0.55s cubic-bezier(0.2,0.7,0.2,1)',
@@ -61,12 +63,26 @@ function Preview({ hoveredIndex }: PreviewProps) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: '20px 24px',
         overflow: 'hidden',
       }}
     >
+      {project?.cover && (
+        <img
+          src={project.cover}
+          alt=""
+          style={{
+            display: 'block',
+            width: '100%',
+            aspectRatio: '1024/500',
+            objectFit: 'cover',
+            opacity: displayed.visible ? 1 : 0,
+            transition: 'opacity 0.19s ease',
+          }}
+        />
+      )}
       <div
         style={{
+          padding: '20px 24px',
           opacity: displayed.visible ? 1 : 0,
           transition: 'opacity 0.19s ease',
         }}
@@ -98,6 +114,11 @@ function Preview({ hoveredIndex }: PreviewProps) {
             >
               {project.description}
             </p>
+            {project.gallery && (
+              <p style={{ fontSize: '12px', color: 'var(--muted)', margin: '10px 0 0', letterSpacing: '0.02em' }}>
+                {project.gallery.length} screenshots inside
+              </p>
+            )}
           </>
         )}
         {!project && (
@@ -112,6 +133,8 @@ function Preview({ hoveredIndex }: PreviewProps) {
 
 export function Work() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [galleryIndex, setGalleryIndex] = useState<number | null>(null)
+  const galleryProject = galleryIndex !== null ? projects[galleryIndex] : null
   const width = useWindowWidth()
   const showPreview = width >= 860
   const sectionRef = useInView() as React.RefObject<HTMLElement>
@@ -155,11 +178,8 @@ export function Work() {
             style={{ borderTop: '1px solid var(--hairline)' }}
           >
             {projects.map((project, i) => (
-              <a
+              <div
                 key={project.id}
-                href={project.link ?? undefined}
-                target={project.link ? '_blank' : undefined}
-                rel={project.link ? 'noreferrer' : undefined}
                 onMouseEnter={() => setHoveredIndex(i)}
                 style={{
                   display: 'block',
@@ -175,6 +195,17 @@ export function Work() {
                   cursor: 'default',
                 }}
               >
+                {/* Whole-row link, kept as an overlay so the screenshots button isn't nested inside an anchor */}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${project.title} (opens in a new tab)`}
+                    style={{ position: 'absolute', inset: 0, zIndex: 1 }}
+                  />
+                )}
+
                 {/* Clay bar */}
                 <div
                   style={{
@@ -234,7 +265,29 @@ export function Work() {
                 >
                   {project.domain} — {project.stack.join(' · ')}
                 </div>
-              </a>
+
+                {project.gallery && (
+                  <button
+                    onClick={() => setGalleryIndex(i)}
+                    style={{
+                      position: 'relative',
+                      zIndex: 2,
+                      marginTop: '12px',
+                      marginLeft: '36px',
+                      background: 'transparent',
+                      border: '1px solid var(--hairline-strong)',
+                      borderRadius: '999px',
+                      padding: '6px 14px',
+                      fontSize: '12.5px',
+                      color: 'var(--clay)',
+                      letterSpacing: '0.02em',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    View {project.gallery.length} screenshots
+                  </button>
+                )}
+              </div>
             ))}
           </div>
 
@@ -242,6 +295,14 @@ export function Work() {
           {showPreview && <Preview hoveredIndex={hoveredIndex} />}
         </div>
       </div>
+
+      {galleryProject?.gallery && (
+        <Gallery
+          title={galleryProject.title}
+          shots={galleryProject.gallery}
+          onClose={() => setGalleryIndex(null)}
+        />
+      )}
     </section>
   )
 }

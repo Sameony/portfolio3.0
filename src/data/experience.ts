@@ -7,9 +7,9 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    period: 'Sep 2024 — Present',
+    period: 'Sep 2024 — Aug 2026',
     company: 'The IT Cart',
-    role: 'Contract Team Lead',
+    role: 'Lead Software Engineer',
     description:
       'Now leading full product delivery across 5+ SaaS platforms — including a six-app logistics ecosystem live across two continents.',
   },
